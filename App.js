@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, FlatList, Image } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Image, Switch } from 'react-native';
 import radio from "./assets/radio.png"
 import firstaid from "./assets/firstaid.png"
 import camping from "./assets/camping.png"
@@ -11,6 +11,9 @@ export default function App() {
     { title: 'Camping', filename: 'camping', mbimage: require("./assets/camping.png")},
     ]);
 
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
   return (
     <View style={styles.container}> 
 
@@ -21,6 +24,13 @@ export default function App() {
           <View style={styles.button}>
             <Image style={styles.image} source={item.mbimage} />
             <Text style={styles.text}>{item.title}</Text>
+            <Switch
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+            />
           </View>
         )}
       />
