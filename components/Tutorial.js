@@ -2,11 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 
-export default function MeritBadgeBook({ route }) {
+export default function Tutorial({ route }) {
    
   return (
     <View style={styles.container}> 
-        <Text>Book: {route.params.filename}</Text>
+        <Text>tutorial</Text>
     </View>
   );
 

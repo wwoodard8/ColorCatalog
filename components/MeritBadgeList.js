@@ -11,7 +11,8 @@ export default function MeritBadgeList({ navigation }) {
 
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-    const onPress = (filename) => navigation.navigate("MeritBadgeBook");
+    const onMBPress = (filename) => navigation.navigate("MeritBadgeBook", {filename: filename});
+    const onTutorialPress = (filename) => navigation.navigate("Tutorial");
     //const onPress = (filename) => console.log("meritbadge");
 
     
@@ -24,6 +25,7 @@ export default function MeritBadgeList({ navigation }) {
       <View style={styles.toprow}>
         <Button style={styles.buttonstyle}
           title="Tutorial"
+          onPress={() => onTutorialPress ()}
         />
         <Button style={styles.buttonstyle}
           title="Downloaded"
@@ -34,7 +36,8 @@ export default function MeritBadgeList({ navigation }) {
         keyExtractor={(item) => item.filename}
         data={people}
         renderItem={({item}) => (
-          <TouchableOpacity onPress={onPress (item.filename)}>
+          <TouchableOpacity 
+          onPress={() => onMBPress (item.filename)}>
             <View style={styles.button}>
               <Image style={styles.image} source={item.mbimage} />
               <Text style={styles.text}>{item.title}</Text>
