@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, FlatList, Image, Switch } from 'react-native';
-import radio from "./assets/radio.png"
-import firstaid from "./assets/firstaid.png"
-import camping from "./assets/camping.png"
+import { StyleSheet, Text, View, FlatList, Image, Switch, Button, TouchableOpacity } from 'react-native';
+
 
 export default function App() {
   const [people, setPeope] = useState([
@@ -13,31 +11,48 @@ export default function App() {
 
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const onPress = (filename) => console.log(filename);
 
+    
   return (
     <View style={styles.container}> 
+
+      <View style={styles.header}>
+        <Text style={styles.headertext}>BSA Merit Badges</Text>
+      </View>
+      <View style={styles.toprow}>
+        <Button style={styles.buttonstyle}
+          title="Tutorial"
+        />
+        <Button style={styles.buttonstyle}
+          title="Downloaded"
+        />
+      </View>
 
       <FlatList
         keyExtractor={(item) => item.filename}
         data={people}
         renderItem={({item}) => (
-          <View style={styles.button}>
-            <Image style={styles.image} source={item.mbimage} />
-            <Text style={styles.text}>{item.title}</Text>
-            <Switch
-              trackColor={{ false: "#767577", true: "#81b0ff" }}
-              thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
-            />
-          </View>
+          <TouchableOpacity onPress={onPress (item.filename)}>
+            <View style={styles.button}>
+              <Image style={styles.image} source={item.mbimage} />
+              <Text style={styles.text}>{item.title}</Text>
+              <Switch style={styles.switchstyle}
+                trackColor={{ false: "#767577", true: "#81b0ff" }}
+                thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+              />
+            </View>
+          </TouchableOpacity>
         )}
       />
-
     </View>
   );
 }
+
+
 
 const styles = StyleSheet.create ({
   container: {
@@ -46,13 +61,17 @@ const styles = StyleSheet.create ({
   },
   button: {
     flexDirection: "row",
-    marginTop: 5,
-    marginBottom: 5,
+    //marginTop: 5,
+    //marginBottom: 5,
     marginLeft: 10,
     marginRight: 10,
     padding:10,
-    borderWidth: 2,
-    borderRadius: 20,
+    borderWidth: 1,
+    borderTopColor: "#FFF",
+    borderRightColor: "#FFF",
+    borderLeftColor: "#FFF",
+    //borderRadius: 20,
+    borderColor: "#ddd",
     backgroundColor: "#FFF",
   },
   image: {
@@ -63,7 +82,41 @@ const styles = StyleSheet.create ({
   text: {
     alignSelf: "center",
     textAlign: "left",
-    fontSize: 25,
+    fontSize: 20,
     paddingLeft: 20,
+    fontFamily: "Avenir-Light",
+    width: 200,
+  },
+  switchstyle: {
+    alignSelf: "center",
+  },
+  buttonstyle: {
+
+  },
+  toprow: {
+    //flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderWidth: 1,
+    borderTopColor: "#FFF",
+    borderLeftColor: "#FFF",
+    borderRightColor: "#FFF",
+    borderBottomColor: "#DDD",
+    padding: 10
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "center",
+    /*borderWidth: 1,
+    borderTopColor: "#FFF",
+    borderLeftColor: "#FFF",
+    borderRightColor: "#FFF",
+    borderBottomColor: "#DDD",
+    paddingBottom: 10,*/
+  },
+  headertext: {
+    fontSize: 22,
+    //fontWeight: "bold",
+    fontFamily: "Avenir-Light",
   }
 })
