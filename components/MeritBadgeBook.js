@@ -1,18 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { WebView } from 'react-native-webview';
 
 
 export default function MeritBadgeBook({ route }) {
-   
+  const filename = route.params.filename
+
   return (
-    <View style={styles.container}> 
-        <Text>Book: {route.params.filename}</Text>
-    </View>
+    <WebView 
+    source={{ uri: 'http://willwoodard.com/meritbadge/' + filename + '.pdf' }} 
+    />
   );
-
 }
-
-
 
 const styles = StyleSheet.create ({
   container: {

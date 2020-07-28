@@ -4,9 +4,9 @@ import { StyleSheet, Text, View, FlatList, Image, Switch, Button, TouchableOpaci
 
 export default function MeritBadgeList({ navigation }) {
   const [people, setPeope] = useState([
-    { title: 'Radio', filename: 'radio', mbimage: require("../assets/radio.png")},
-    { title: 'Citizenship in the Nation', filename: 'firstaid', mbimage: require("../assets/firstaid.png")},
-    { title: 'Camping', filename: 'camping', mbimage: require("../assets/camping.png")},
+    { title: 'Radio', filename: 'radio2', mbimage: require("../assets/radio.png")},
+    { title: 'First Aid', filename: 'firstaid2', mbimage: require("../assets/firstaid.png")},
+    { title: 'Camping', filename: 'camping2', mbimage: require("../assets/camping.png")},
     ]);
 
     const [isEnabled, setIsEnabled] = useState(false);
