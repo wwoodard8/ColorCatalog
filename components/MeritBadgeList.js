@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, FlatList, Image, Switch, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Image, Switch, Button, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 
 
 export default function MeritBadgeList({ navigation }) {
@@ -13,9 +13,18 @@ export default function MeritBadgeList({ navigation }) {
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     const onMBPress = (filename) => navigation.navigate("MeritBadgeBook", {filename: filename});
     const onTutorialPress = (filename) => navigation.navigate("Tutorial");
-    //const onPress = (filename) => console.log("meritbadge");
-
     
+    const showAlert = () => {
+      Alert.alert(
+        'Download Book',
+        'Do you wish to download a copy of the book to your device?',
+        [
+          {text: "Yes", onPress: () => console.warn('YES Pressed'), style: 'cancel'},
+          {text: "No", onPress: () => console.warn('NO Pressed'), style: 'cancel'}
+        ]
+      )
+    }
+  
   return (
     <View style={styles.container}> 
 
@@ -28,6 +37,7 @@ export default function MeritBadgeList({ navigation }) {
           onPress={() => onTutorialPress ()}
         />
         <Button style={styles.buttonstyle}
+          
           title="Downloaded"
         />
       </View>
@@ -45,8 +55,7 @@ export default function MeritBadgeList({ navigation }) {
                 trackColor={{ false: "#767577", true: "#81b0ff" }}
                 thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
                 ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                value={isEnabled}
+                onValueChange={() => showAlert()}
               />
             </View>
           </TouchableOpacity>

@@ -22,7 +22,7 @@ export default function App() {
         options={{ title: "NAME"}}
         component={MeritBadgeBook} />
 
-<Screen 
+        <Screen 
         name="Tutorial" 
         options={{ title: "Tutorial"}}
         component={Tutorial} />
